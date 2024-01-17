@@ -8,6 +8,7 @@ import (
 	"system_management/commons/ierr"
 	"system_management/commons/response"
 	"system_management/commons/utils"
+	"system_management/internal/shared/constant"
 )
 
 func MustLoggedIn(signingKey, encryptionKey string) echo.MiddlewareFunc {
@@ -25,7 +26,7 @@ func MustLoggedIn(signingKey, encryptionKey string) echo.MiddlewareFunc {
 				tokenType = val
 			}
 
-			if tokenType != "access" {
+			if tokenType != constant.TokenTypeAccess {
 				return response.ErrUnauthorized(ierr.ErrUnauthorized)
 			}
 

@@ -25,7 +25,7 @@ func Decode(s string) []byte {
 func Encrypt(text, MySecret string) (string, error) {
 	block, err := aes.NewCipher([]byte(MySecret))
 	if err != nil {
-		return "", errors.Wrap(err, "cannt init new chiper")
+		return "", errors.Wrap(err, "cannot init new chipper")
 	}
 	plainText := []byte(text)
 	cfb := cipher.NewCFBEncrypter(block, bytes)
@@ -38,7 +38,7 @@ func Encrypt(text, MySecret string) (string, error) {
 func Decrypt(text, MySecret string) (string, error) {
 	block, err := aes.NewCipher([]byte(MySecret))
 	if err != nil {
-		return "", errors.Wrap(err, "cannt init new chiper")
+		return "", errors.Wrap(err, "cannot init new chipper")
 	}
 	cipherText := Decode(text)
 	cfb := cipher.NewCFBDecrypter(block, bytes)

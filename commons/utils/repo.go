@@ -2,8 +2,8 @@ package utils
 
 import "reflect"
 
-func ReturnFirstIfNotNil[T interface{}](first T, second T) T {
-	if reflect.ValueOf(first).IsNil() {
+func ReturnFirstIfNotNil[T any](first T, second T) T {
+	if reflect.ValueOf(first).IsZero() {
 		return second
 	}
 	return first

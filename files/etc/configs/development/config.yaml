@@ -11,3 +11,9 @@ db:
   username: postgres
   password: postgres
   db_name: management_system
+
+jwt:
+  signing_key: zDgKZG9vVZGFumVP5fQQMwMmN7EGsHY7mDKFyF59V9CrbVVm2GXdYjXYSHXAwB9KRSUhN3mhqUPVm9fg4RKq72B6tArYGZEBK5TT6FdqGMtYYhXjSkCBQtZjvaHjemAW
+  token_expiration: 60
+  refresh_token_expiration: 7
+  encryption_key: 447FC2AA6EFFFEE5405A559E88DC958C

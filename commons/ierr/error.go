@@ -19,12 +19,15 @@ var (
 
 // Error 404
 var (
-	ErrNotFound = Error{Code: "404-000", Message: "resource not found"}
+	ErrNotFound     = Error{Code: "404-000", Message: "resource not found"}
+	ErrUserNotFound = Error{Code: "404-001", Message: "user not found"}
 )
 
 // Error 400
 var (
-	ErrorBadRequest = Error{Code: "400-000", Message: "bad request"}
+	ErrorBadRequest  = Error{Code: "400-000", Message: "bad request"}
+	ErrInvalidCred   = Error{Code: "400-001", Message: "invalid username or password "}
+	ErrUserNotActive = Error{Code: "400-002", Message: "user not active"}
 )
 
 // Error 403

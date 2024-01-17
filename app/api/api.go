@@ -93,6 +93,7 @@ func (a *Api) runServer() {
 	<-quit
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
+	logrus.Info("graceful shutdown the server")
 	if err := a.e.Shutdown(ctx); err != nil {
 		logrus.Fatal(err)
 	}

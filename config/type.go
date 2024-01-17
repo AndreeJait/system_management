@@ -44,4 +44,11 @@ type Config struct {
 		Password string `json:"password" yaml:"password"`
 		Name     string `json:"db_name" yaml:"db_name"`
 	} `json:"db" yaml:"db"`
+
+	Jwt struct {
+		SigningKey             string `json:"signing_key" yaml:"signing_key"`
+		TokenExpiration        int    `json:"token_expiration" yaml:"token_expiration"`
+		RefreshTokenExpiration int    `json:"refresh_token_expiration" yaml:"refresh_token_expiration"`
+		EncryptionKey          string `json:"encryption_key" yaml:"encryption_key"`
+	} `json:"jwt" yaml:"jwt"`
 }
