@@ -1,0 +1,6 @@
+build/
+
+.idea/
+
+files/etc/configs/production/config.yaml
+files/etc/configs/staging/config.yaml

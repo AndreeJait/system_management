@@ -1,0 +1,13 @@
+server:
+  port: 8081
+  host: localhost
+  name: server-management
+  version: 1.0
+  mode: development
+
+db:
+  port: 5432
+  host: localhost
+  username: postgres
+  password: postgres
+  db_name: management_system
