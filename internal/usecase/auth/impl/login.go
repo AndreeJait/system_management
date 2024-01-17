@@ -83,7 +83,12 @@ func (u useCase) generateAccessToken(ctx context.Context, user model.User) (acce
 		return
 	}
 
-	emailEncrypted, err := utils.Encrypt(user.Username, u.cfg.Jwt.EncryptionKey)
+	usernameEncrypted, err := utils.Encrypt(user.Username, u.cfg.Jwt.EncryptionKey)
+	if err != nil {
+		return
+	}
+
+	roleEncrypted, err := utils.Encrypt(user.Role, u.cfg.Jwt.EncryptionKey)
 	if err != nil {
 		return
 	}
@@ -92,7 +97,8 @@ func (u useCase) generateAccessToken(ctx context.Context, user model.User) (acce
 	accessToken, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":         user.ID,
 		"full_name":  fullNameEncrypted,
-		"email":      emailEncrypted,
+		"username":   usernameEncrypted,
+		"role":       roleEncrypted,
 		"exp":        expiresAtUnix,
 		"token_type": constant.TokenTypeAccess,
 	}).SignedString([]byte(u.cfg.Jwt.SigningKey))

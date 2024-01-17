@@ -42,6 +42,13 @@ func MustLoggedIn(signingKey, encryptionKey string) echo.MiddlewareFunc {
 				}
 			}
 
+			if claims["role"] != nil {
+				claims["role"], err = utils.Decrypt(claims["role"].(string), encryptionKey)
+				if err != nil {
+					return response.ErrInternalServerError(err)
+				}
+			}
+
 			ctx := context.WithValue(c.Request().Context(), utils.ContextKeyUser, token)
 			r := c.Request().WithContext(ctx)
 			c.SetRequest(r)

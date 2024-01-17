@@ -52,10 +52,7 @@ func GetLoggedInUser(ctx context.Context) dto.UserToken {
 
 	claims := loggedInUser.Claims.(jwt.MapClaims)
 
-	var id string
-	if val, ok := claims["id"].(string); ok {
-		id = val
-	}
+	var id int64 = int64(claims["id"].(float64))
 
 	var fullName string
 	if val, ok := claims["full_name"].(string); ok {
