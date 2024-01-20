@@ -37,6 +37,17 @@ type UsedMoney struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
+type HistoryMoney struct {
+	ID        int64     `json:"id" bun:",pk"`
+	Value     int64     `json:"value"`
+	Operation string    `json:"operation"`
+	Purpose   *string   `json:"purpose"`
+	UserID    int64     `json:"user_id"`
+	User      User      `json:"user" bun:"rel:belongs-to,join:user_id=id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+}
+
 type TargetUsedMoney struct {
 	ID      int64  `json:"id" bun:",pk"`
 	Purpose string `json:"purpose"`

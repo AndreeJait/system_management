@@ -15,3 +15,7 @@ func GetRole(role string) UserRole {
 		return Visitor
 	}
 }
+
+type CountModel struct {
+	TotalData int64 `json:"total_data"`
+}

@@ -6,6 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"system_management/commons/ierr"
 	"system_management/commons/password"
+	"system_management/commons/times"
 	"system_management/commons/utils"
 	"system_management/internal/model"
 	"system_management/internal/shared/constant"
@@ -92,8 +93,8 @@ func (u useCase) generateAccessToken(ctx context.Context, user model.User) (acce
 	if err != nil {
 		return
 	}
-	expiresAt = time.Now().Add(time.Duration(u.cfg.Jwt.TokenExpiration) * time.Minute)
-	expiresAtUnix := time.Now().Add(time.Duration(u.cfg.Jwt.TokenExpiration) * time.Minute).Unix()
+	expiresAt = times.Now().Add(time.Duration(u.cfg.Jwt.TokenExpiration) * time.Minute)
+	expiresAtUnix := times.Now().Add(time.Duration(u.cfg.Jwt.TokenExpiration) * time.Minute).Unix()
 	accessToken, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":         user.ID,
 		"full_name":  fullNameEncrypted,
@@ -110,7 +111,7 @@ func (u useCase) generateRefreshToken(ctx context.Context, user model.User) (ref
 
 	refreshToken, err = jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":         user.ID,
-		"exp":        time.Now().AddDate(0, 0, u.cfg.Jwt.RefreshTokenExpiration).Unix(),
+		"exp":        times.Now().AddDate(0, 0, u.cfg.Jwt.RefreshTokenExpiration).Unix(),
 		"token_type": constant.TokenTypeRefresh,
 	}).SignedString([]byte(u.cfg.Jwt.SigningKey))
 	err = errors.Wrap(err, "cannot generate token")

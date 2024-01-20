@@ -3,6 +3,7 @@ package management_system
 import (
 	"context"
 	"github.com/uptrace/bun"
+	"system_management/internal/repository/db/management_system/history_money"
 	"system_management/internal/repository/db/management_system/info_saving"
 	"system_management/internal/repository/db/management_system/target_used_money"
 	"system_management/internal/repository/db/management_system/used_money"
@@ -17,6 +18,7 @@ type ManagementSystemRepo interface {
 	GetUsedMoneyRepository() used_money.Repository
 	GetInfoSavingRepository() info_saving.Repository
 	GetTargetUsedMoneyRepository() target_used_money.Repository
+	GetHistoryMoneyRepository() history_money.Repository
 }
 
 // DBI is a DB interface implemented by *DB and *Tx.
